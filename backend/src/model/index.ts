@@ -1,0 +1,10 @@
+import * as AWS from 'aws-sdk'
+import { DocumentClient } from 'aws-sdk/clients/dynamodb'
+
+const dynamoDBClient = (): DocumentClient => {
+  return (process.env.IS_OFFLINE)
+    ? new AWS.DynamoDB.DocumentClient({ region: 'localhost', endpoint: 'http://localhost:5000' })
+    : new AWS.DynamoDB.DocumentClient()
+}
+
+export default dynamoDBClient
