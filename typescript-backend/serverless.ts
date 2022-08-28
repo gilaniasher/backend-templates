@@ -1,13 +1,5 @@
 import type { AWS } from '@serverless/typescript'
-import { createTodo, getTodo, getAllTodos, updateTodo, deleteTodo } from '@functions/todos'
-
-const functions = {
-  getAllTodos,
-  createTodo,
-  getTodo,
-  updateTodo,
-  deleteTodo
-}
+import functions from '@functions/index'
 
 const iam = {
   role: {
@@ -22,7 +14,9 @@ const iam = {
         'dynamodb:UpdateItem',
         'dynamodb:DeleteItem',
       ],
-      Resource: 'arn:aws:dynamodb:us-west-2:*:table/TodosTable'
+      Resource: [
+        {'Fn::GetAtt': ['TodosDynamoDBTable', 'Arn']}
+      ]
     }]
   }
 }
@@ -47,7 +41,7 @@ const todosDynamoDbTable = {
 }
 
 const serverlessConfiguration: AWS = {
-  service: 'backend',
+  service: 'ts-backend',
   frameworkVersion: '3',
 
   provider: {
@@ -66,12 +60,11 @@ const serverlessConfiguration: AWS = {
 
   resources: {
     Resources: {
-      TodosTable: todosDynamoDbTable
+      TodosDynamoDBTable: todosDynamoDbTable
     }
   },
 
-  functions, 
-  package: { individually: true },
+  functions,
 
   plugins: [
     'serverless-esbuild',
@@ -92,7 +85,7 @@ const serverlessConfiguration: AWS = {
     },
     dynamodb:{
       start:{
-        port: 5000,
+        port: 8000,
         inMemory: true,
         migrate: true
       },
