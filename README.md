@@ -11,8 +11,7 @@ I use serverless REST APIs for a lot of projects and I wanted to put them all in
 Click the following links to download the appropriate backend template as a ZIP. Will have to provide your Github PAT token since this is a private repo right now.
 
 * [TypeScript](https://download-directory.github.io/?url=https://github.com/gilaniasher/backend-templates/tree/main/typescript-backend)
-
-&nbsp;
+* [Python](https://download-directory.github.io/?url=https://github.com/gilaniasher/backend-templates/tree/main/python-backend)
 
 Use the following command to unzip to a directory:
 ```

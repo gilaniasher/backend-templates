@@ -1,0 +1,55 @@
+service: python-backend
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.8
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - !GetAtt todosTable.Arn
+
+functions:
+  - ${file(serverless-config/functions.yml)}
+
+resources:
+  - ${file(serverless-config/dynamodb.yml)}
+
+package:
+  patterns:
+    - '!.dynamodb/**'
+    - '!.venv/**'
+    - '!node_modules/**'
+    - '!.nvmrc'
+    - '!package.json'
+    - '!package-lock.json'
+    - '!README.md'
+    - '!__pycache__/**'
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      migrate: true
+  pythonRequirements:
+    dockerizePip: true
+    noDeploy:
+      - boto3
+      - botocore
+      - s3transfer
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+  - serverless-python-requirements

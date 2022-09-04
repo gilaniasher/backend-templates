@@ -1,0 +1,35 @@
+createTodo:
+  handler: src/functions/create_todo.handler
+  events:
+    - http:
+        path: /todo
+        method: POST
+        cors: true
+deleteTodo:
+  handler: src/functions/delete_todo.handler
+  events:
+    - http:
+        path: /todo/{id}
+        method: DELETE
+        cors: true
+getAllTodos:
+  handler: src/functions/get_all_todos.handler
+  events:
+    - http:
+        path: /todo
+        method: GET
+        cors: true
+getTodo:
+  handler: src/functions/get_todo.handler
+  events:
+    - http:
+        path: /todo/{id}
+        method: GET
+        cors: true
+updateTodo:
+  handler: src/functions/update_todo.handler
+  events:
+    - http:
+        path: /todo/{id}
+        method: PUT
+        cors: true
