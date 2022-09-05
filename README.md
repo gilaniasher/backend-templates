@@ -7,14 +7,23 @@ I use serverless REST APIs for a lot of projects and I wanted to put them all in
 * Easy AWS deployments
 * Request schema validation (for TypeScript)
 
-# Available Languages
-Click the following links to download the appropriate backend template as a ZIP. Will have to provide your Github PAT token since this is a private repo right now.
+# Usage
+You can run the following commands to add these templates to your project. First run `npm install -g serverless`.
 
-* [TypeScript](https://download-directory.github.io/?url=https://github.com/gilaniasher/backend-templates/tree/main/typescript-backend)
-* [Python](https://download-directory.github.io/?url=https://github.com/gilaniasher/backend-templates/tree/main/python-backend)
-* [Node](https://download-directory.github.io/?url=https://github.com/gilaniasher/backend-templates/tree/main/node-backend)
+### TypeScript
 
-Use the following command to unzip to a directory:
 ```
-unzip template.zip -d typescript-backend
+sls create --template-url https://github.com/gilaniasher/backend-templates/tree/main/typescript-backend --name backend-typescript
+```
+
+### Python
+
+```
+sls create --template-url https://github.com/gilaniasher/backend-templates/tree/main/python-backend --name backend-python
+```
+
+### Node
+
+```
+sls create --template-url https://github.com/gilaniasher/backend-templates/tree/main/node-backend --name backend-node
 ```
