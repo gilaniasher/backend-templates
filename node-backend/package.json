@@ -1,17 +1,20 @@
 {
-  "name": "python-backend",
+  "name": "node-backend",
   "version": "1.0.0",
-  "description": "Starter Python Serverless Backend",
+  "description": "Starter Node Serverless Backend",
+  "type": "module",
   "scripts": {
     "start": "npx sls offline start --reloadHandler",
     "view-table": "npx dynamodb-admin",
     "deploy": "npx sls deploy -r us-west-2"
   },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
     "dynamodb-admin": "^4.4.0",
-    "serverless": "^3.0.0",
+    "serverless": "^3.22.0",
     "serverless-dynamodb-local": "^0.2.40",
-    "serverless-offline": "^9.2.6",
-    "serverless-python-requirements": "^5.4.0"
+    "serverless-offline": "^10.0.0"
   }
 }

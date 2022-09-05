@@ -1,0 +1,43 @@
+service: node-backend
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - !GetAtt todosTable.Arn
+
+functions:
+  - ${file(serverless-config/functions.yml)}
+
+resources:
+  - ${file(serverless-config/dynamodb.yml)}
+
+package:
+  patterns:
+    - '!.dynamodb/**'
+    - '!.nvmrc'
+    - '!README.md'
+
+custom:
+  dynamodb:
+    stages:
+      - dev
+    start:
+      migrate: true
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline

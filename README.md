@@ -12,6 +12,7 @@ Click the following links to download the appropriate backend template as a ZIP.
 
 * [TypeScript](https://download-directory.github.io/?url=https://github.com/gilaniasher/backend-templates/tree/main/typescript-backend)
 * [Python](https://download-directory.github.io/?url=https://github.com/gilaniasher/backend-templates/tree/main/python-backend)
+* [Node](https://download-directory.github.io/?url=https://github.com/gilaniasher/backend-templates/tree/main/node-backend)
 
 Use the following command to unzip to a directory:
 ```

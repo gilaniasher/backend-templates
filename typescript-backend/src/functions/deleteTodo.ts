@@ -4,7 +4,7 @@ import { ddbClient, todosTableName } from '@utils/dynamoDbUtils'
 const deleteTodo: ValidatedAPIGatewayHandle = async (event) => {
   const id = event.pathParameters.id
 
-  const todoDdb = ddbClient.delete({
+  const todoDdb = await ddbClient.delete({
     TableName: todosTableName,
     Key: { todosId: id }
   }).promise()

@@ -1,7 +1,7 @@
 # Python Serverless Backend
 This backend uses the Serverless framework to manage Lambda functions and DynamoDB tables. It supports:
 * Local server for interacting with Lambdas and local DynamoDB
-* Hot reloads (few seconds of delay)
+* Hot reloads
 * Code reuse across Lambdas
 * Easy AWS deployments
 
