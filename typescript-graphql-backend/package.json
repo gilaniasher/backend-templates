@@ -1,0 +1,29 @@
+{
+  "name": "ts-graphql-backend",
+  "version": "1.0.0",
+  "description": "Starter TypeScript Graphql Serverless Backend",
+  "main": "serverless.ts",
+  "scripts": {
+    "start": "npx sls offline start --reloadHandler",
+    "view-table": "npx dynamodb-admin",
+    "deploy": "npx sls deploy -r us-west-2"
+  },
+  "dependencies": {
+    "apollo-server-lambda": "^3.10.2",
+    "graphql": "^16.6.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@serverless/typescript": "^3.21.0",
+    "@types/node": "^18.7.16",
+    "dynamodb-admin": "^4.4.0",
+    "esbuild": "^0.15.7",
+    "serverless": "^3.22.0",
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-esbuild": "^1.32.8",
+    "serverless-offline": "^10.0.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "^4.8.3"
+  }
+}

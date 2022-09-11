@@ -1,5 +1,5 @@
 # Backend Templates
-I use serverless REST APIs for a lot of projects and I wanted to put them all in one place. These backend templates offer the following features:
+I use serverless REST/GraphQL APIs for a lot of projects and I wanted to put them all in one place. These backend templates offer the following features:
 * Local server for Lambdas
 * Local DynamoDB tables
 * Hot reloading
@@ -10,20 +10,22 @@ I use serverless REST APIs for a lot of projects and I wanted to put them all in
 # Usage
 You can run the following commands to add these templates to your project. First run `npm install -g serverless`.
 
-### TypeScript
-
+### TypeScript (REST)
 ```
 sls create --template-url https://github.com/gilaniasher/backend-templates/tree/main/typescript-backend --name backend-typescript
 ```
 
-### Python
+### TypeScript (GraphQL)
+```
+sls create --template-url https://github.com/gilaniasher/backend-templates/tree/main/typescript-graphql-backend --name backend-typescript-gql
+```
 
+### Python (REST)
 ```
 sls create --template-url https://github.com/gilaniasher/backend-templates/tree/main/python-backend --name backend-python
 ```
 
-### Node
-
+### Node (REST)
 ```
 sls create --template-url https://github.com/gilaniasher/backend-templates/tree/main/node-backend --name backend-node
 ```
