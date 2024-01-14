@@ -1,4 +1,4 @@
-import { handlerPath } from '@utils/utils'
+import { handlerPath } from '@utils/reqHandling'
 import { schema as createFnSchema } from './createTodo'
 
 const fullHandler = (entryPoint: string) => {

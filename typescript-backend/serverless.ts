@@ -1,4 +1,4 @@
-import type { AWS } from '@serverless/typescript'
+import type { AWS, AwsArn } from '@serverless/typescript'
 import functions from '@functions/index'
 
 const iam = {
@@ -20,6 +20,10 @@ const iam = {
     }]
   }
 }
+
+const iamManagedPolicies: AwsArn[] = [
+  'arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess'
+]
 
 const todosDynamoDbTable = {
   Type: 'AWS::DynamoDB::Table',
@@ -47,7 +51,12 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs20.x',
+    tracing: {
+      apiGateway: true,
+      lambda: 'PassThrough',
+    },
     iam,
+    iamManagedPolicies,
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -55,6 +64,20 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      POWERTOOLS_SERVICE_NAME: 'BackendTemplateTodoServiceTypeScript',
+
+      // Tracer-specific env variables
+      POWERTOOLS_TRACE_ENABLED: 'true',
+      POWERTOOLS_TRACER_CAPTURE_RESPONSE: 'true',
+      POWERTOOLS_TRACER_CAPTURE_ERROR: 'true',
+      POWERTOOLS_TRACER_CAPTURE_HTTPS_REQUESTS: 'true',
+
+      // Logger-specific env variables
+      POWERTOOLS_LOG_LEVEL: 'INFO',
+      POWERTOOLS_LOGGER_LOG_EVENT: 'true',
+
+      // Metrics-specific env variables
+      POWERTOOLS_METRICS_NAMESPACE: 'BackendTemplateTodoServiceTypeScript',
     }
   },
 
@@ -77,10 +100,7 @@ const serverlessConfiguration: AWS = {
       bundle: true,
       minify: false,
       sourcemap: true,
-      exclude: [
-        '@aws-sdk/client-dynamodb',
-        '@aws-sdk/lib-dynamodb'
-      ],
+      exclude: [],
       target: 'node20',
       define: { 'require.resolve': undefined },
       platform: 'node',
