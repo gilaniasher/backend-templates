@@ -7,7 +7,7 @@ const deleteTodo: ValidatedAPIGatewayHandle = async (event) => {
   const todoDdb = await ddbClient.delete({
     TableName: todosTableName,
     Key: { todosId: id }
-  }).promise()
+  })
 
   return formatJSONResponse({ todoDdb, id })
 }

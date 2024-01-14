@@ -12,7 +12,7 @@ const updateTodo: ValidatedAPIGatewayHandle = async (event) => {
     ExpressionAttributeNames: { '#status': 'status' },
     ExpressionAttributeValues: { ':status': true },
     ReturnValues: 'ALL_NEW'
-  }).promise()
+  })
 
   const todoObj = updatedTodoDdb.Attributes as Todo
   return formatJSONResponse({ todoObj, id })

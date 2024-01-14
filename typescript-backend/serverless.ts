@@ -46,7 +46,7 @@ const serverlessConfiguration: AWS = {
 
   provider: {
     name: 'aws',
-    runtime: 'nodejs14.x',
+    runtime: 'nodejs20.x',
     iam,
     apiGateway: {
       minimumCompressionSize: 1024,
@@ -69,7 +69,7 @@ const serverlessConfiguration: AWS = {
   plugins: [
     'serverless-esbuild',
     'serverless-offline',
-    'serverless-dynamodb-local'
+    'serverless-dynamodb'
   ],
 
   custom: {
@@ -77,13 +77,16 @@ const serverlessConfiguration: AWS = {
       bundle: true,
       minify: false,
       sourcemap: true,
-      exclude: ['aws-sdk'],
-      target: 'node14',
+      exclude: [
+        '@aws-sdk/client-dynamodb',
+        '@aws-sdk/lib-dynamodb'
+      ],
+      target: 'node20',
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
     },
-    dynamodb:{
+    dynamodb: {
       start:{
         port: 8000,
         inMemory: true,

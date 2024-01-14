@@ -24,7 +24,7 @@ const createTodo: ValidatedAPIGatewayHandle<typeof schema> = async (event) => {
   const todoDdb = await ddbClient.put({
     TableName: todosTableName,
     Item: todoItem
-  }).promise()
+  })
 
   return formatJSONResponse({ todoDdb })
 }

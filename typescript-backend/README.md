@@ -11,9 +11,10 @@ This backend uses the Serverless framework to manage Lambda functions and Dynamo
 > **Java Version**: Java 8 or higher is required to run DynamoDB locally.
 
 ```
-nvm use                    # Use the same Node version as Lambda (Node 14)
+nvm use                    # Use the same Node version as Lambda (Node 20)
 npm i
 npx sls dynamodb install   # Will install local DynamoDB JARs
+aws configure
 ```
 
 ## Running Locally

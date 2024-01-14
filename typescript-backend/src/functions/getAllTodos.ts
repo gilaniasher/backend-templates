@@ -5,7 +5,7 @@ import Todo from '@models/Todo'
 const getAllTodos: ValidatedAPIGatewayHandle = async () => {
   const todosDdb = await ddbClient.scan({
     TableName: todosTableName
-  }).promise()
+  })
 
   const todos = todosDdb.Items as Todo[]
   return formatJSONResponse({ todos })

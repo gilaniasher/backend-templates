@@ -8,7 +8,7 @@ const getAllTodos: ValidatedAPIGatewayHandle = async (event) => {
   const todoDdb = await ddbClient.get({
     TableName: todosTableName,
     Key: { todosId: id }
-  }).promise()
+  })
 
   if (!todoDdb.Item)
     return formatJSONResponse({ status: 404, message: 'Id does not exist' })
